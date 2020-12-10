@@ -1,3 +1,7 @@
+<p align="center">
+<img src="https://github.com/mbelesiu/chatBack/blob/main/chatback.PNG" >
+</p>
+
 # Chat Back
 #### Instant Messaging Web App
 
