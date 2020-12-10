@@ -25,6 +25,7 @@ function MessageForm({ sendMessage }) {
         value={name}
         placeholder="Name"
         onChange={(e) => setName(e.target.value)}
+        required
       />
       <br />
       <textarea
@@ -33,6 +34,7 @@ function MessageForm({ sendMessage }) {
         value={message}
         placeholder="Your Message Here"
         onChange={(e) => setMessage(e.target.value)}
+        required
       />
 
       <br />

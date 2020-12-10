@@ -15,19 +15,24 @@ function App() {
 
   const getMessage = () => {
     axios.get('/api/messages')
-      .then((data) => {
+      .then(({ data }) => {
         console.log(data);
+        setMessages(data);
       })
+      .then(() => console.log(`messages : ${messages}`))
       .catch((err) => console.log(err))
+
   }
 
   const sendMessage = (data) => {
     axios.post('/api/messages', data)
-      .then((res) => {
-        console.log(res);
-      })
+      .then(() => (getMessage()))
       .catch((err) => console.log(err))
   }
+
+  useEffect(() => {
+    getMessage();
+  }, [])
 
   return (
     <div className="container">
@@ -35,7 +40,7 @@ function App() {
       <div className="jumbotron">
         <h1 className="display-4">Send Message</h1>
         <br />
-        <MessageForm sendMessage={sendMessage}/>
+        <MessageForm sendMessage={sendMessage} />
       </div>
       <Messages messages={messages} />
 

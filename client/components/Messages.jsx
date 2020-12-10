@@ -3,15 +3,15 @@ import 'materialize-css/dist/css/materialize.min.css';
 import 'materialize-css/dist/js/materialize.min';
 
 function Messages({ messages }) {
-
-  return messages.length === 0 ? null : (
+  console.log(messages)
+  return (
     <div>
-      {messages.map((message) => {
+      {messages.map((message) => (
         <>
-          <h3>{message.name}</h3>
+          <h6><b>{message.name}</b></h6>
           <p>{message.message}</p>
-        </>
-      })}
+        </>)
+      )}
     </div>
   )
 
