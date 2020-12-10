@@ -1,10 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const http = require('http')
+const socketIo = require('socket.io')
 
+const app = express();
 const Messages = require('../database/MongoSchema.js');
 const PORT = 3000;
-const app = express();
+const server = http.createServer(app);
+const io = socketIo(server);
 
 
 
@@ -20,11 +24,20 @@ app.get('/api/messages', (req, res) => {
 
 app.post('/api/messages', (req, res) => {
   const message = new Messages(req.body);
-  message.save((err)=>{
-    err ? res.sendStatus(500) : res.sendStatus(200);
+  message.save((err) => {
+    if (err) {
+      res.sendStatus(500)
+    }
+    io.emit('message', req.body);
+    res.sendStatus(200);
+
   })
 })
 
-app.listen(PORT, () => {
+io.on('connection', () => {
+  console.log('User connected')
+});
+
+server.listen(PORT, () => {
   console.log(`Listening on port : ${PORT}`);
 })

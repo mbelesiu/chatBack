@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import 'materialize-css/dist/css/materialize.min.css';
 import 'materialize-css/dist/js/materialize.min';
 import axios from 'axios';
+import openSocket from 'socket.io-client';
 import Messages from './Messages.jsx';
 import MessageForm from './MessageForm.jsx';
 
@@ -9,17 +10,22 @@ function App() {
 
   const [messages, setMessages] = useState([])
 
-  const addMessage = () => {
-
-  }
+  const socket = openSocket('http://localhost:3000');
+  socket.on('message', (message) => {
+    let tempMessages = messages;
+    // console.log(`before unshift ${tempMessages}`);
+    tempMessages.unshift(message);
+    // console.log(`After unshit ${tempMessages}`);
+    setMessages(tempMessages);
+  })
 
   const getMessage = () => {
     axios.get('/api/messages')
       .then(({ data }) => {
-        console.log(data);
+        // console.log(data);
+        data.reverse();
         setMessages(data);
       })
-      .then(() => console.log(`messages : ${messages}`))
       .catch((err) => console.log(err))
 
   }
