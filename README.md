@@ -1,4 +1,4 @@
-## Chat Back
+# Chat Back
 #### Instant Messaging Web App
 
 ## Table of contents
