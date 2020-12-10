@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://github.com/mbelesiu/chatBack/blob/main/chatback.PNG" width="674.25 px" height="382.5 px">
+<img src="https://github.com/mbelesiu/chatBack/blob/main/chatback.PNG" width="449.5 px" height="255 px">
 </p>
 
 # Chat Back
